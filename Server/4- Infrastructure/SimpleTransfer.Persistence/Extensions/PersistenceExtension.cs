@@ -9,7 +9,7 @@ namespace SimpleTransfer.Persistence.Extensions;
 
 public static class PersistenceExtension
 {
-    public static void ConfigurePersistence(this IServiceCollection services)
+    public static void Configure(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
