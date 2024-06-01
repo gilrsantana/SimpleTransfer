@@ -31,6 +31,8 @@ public class UserMap : IEntityTypeConfiguration<User>
                     v => (EDocumentType)Enum.Parse(typeof(EDocumentType), v))
                 .IsRequired();
             y.Ignore(x => x.Notifications);
+            y.HasIndex(x => new {x.Number, x.Type})
+                .IsUnique();
         });
         builder.HasOne(x => x.AccountBank)
             .WithOne(x => x.User)
@@ -38,5 +40,7 @@ public class UserMap : IEntityTypeConfiguration<User>
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
         builder.Ignore(x => x.Notifications);
+        builder.HasIndex(x => x.Email)
+            .IsUnique();
     }
 }

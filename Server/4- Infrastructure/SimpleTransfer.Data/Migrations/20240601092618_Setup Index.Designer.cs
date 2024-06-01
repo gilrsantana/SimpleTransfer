@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleTransfer.Data.Context;
 
@@ -11,9 +12,11 @@ using SimpleTransfer.Data.Context;
 namespace SimpleTransfer.Data.Migrations
 {
     [DbContext(typeof(SimpleTransferContext))]
-    partial class SimpleTransferContextModelSnapshot : ModelSnapshot
+    [Migration("20240601092618_Setup Index")]
+    partial class SetupIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
