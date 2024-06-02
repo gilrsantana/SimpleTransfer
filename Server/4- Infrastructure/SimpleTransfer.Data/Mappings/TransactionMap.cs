@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Entities;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Enums;
+using SimpleTransfer.Domain.BankAggregate.Entities;
+using SimpleTransfer.Domain.BankAggregate.Enums;
 
 namespace SimpleTransfer.Data.Mappings;
 

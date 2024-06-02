@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Flunt.Br;
 using Flunt.Br.Extensions;
 using SimpleTransfer.Domain.IdentityAggregate.Enums;
@@ -14,7 +15,8 @@ public class Cpf : Document
     
     public static Cpf Create(string number)
     {
-        return new Cpf(number);
+        var numberDigits = Regex.Replace(number, @"\D", "");
+        return new Cpf(numberDigits);
     }
 
     public string GetToString()

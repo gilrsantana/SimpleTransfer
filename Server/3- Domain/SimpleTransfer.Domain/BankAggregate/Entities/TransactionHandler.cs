@@ -1,9 +1,9 @@
 using Flunt.Validations;
 using SimpleTransfer.Common.Models;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Enums;
+using SimpleTransfer.Domain.BankAggregate.Enums;
 using SimpleTransfer.Domain.IdentityAggregate.Enums;
 
-namespace SimpleTransfer.Domain.BankTransactionsAggregate.Entities;
+namespace SimpleTransfer.Domain.BankAggregate.Entities;
 
 public class TransactionHandler : BaseEntity
 {

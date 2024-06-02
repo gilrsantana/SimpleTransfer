@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SimpleTransfer.Application.Identity.UseCases.RegisterUser.Commands;
 
 namespace SimpleTransfer.API.Extensions;
 
@@ -19,6 +20,7 @@ public static class ConfigureApiProject
         services.AddCors();
         ConfigureSwagger(services);
         ConfigureAuthentication(services, configuration);
+        ConfigureMediatR(services);
     }
 
     private static void ConfigureSwagger(IServiceCollection services)
@@ -90,5 +92,13 @@ public static class ConfigureApiProject
                     ValidateLifetime = true
                 };
             });
+    }
+    
+    private static void ConfigureMediatR(IServiceCollection services)
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+            typeof(Program).Assembly,
+            typeof(RegisterUserCommand).Assembly)
+        );
     }
 }

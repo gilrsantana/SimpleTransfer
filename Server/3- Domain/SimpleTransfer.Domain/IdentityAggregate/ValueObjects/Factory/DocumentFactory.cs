@@ -1,15 +1,16 @@
-using SimpleTransfer.Domain.IdentityAggregate.Enums;
+using System.Text.RegularExpressions;
 
 namespace SimpleTransfer.Domain.IdentityAggregate.ValueObjects.Factory;
 
 public static class DocumentFactory
 {
-    public static Document? Create(string number, EDocumentType type)
+    public static Document? Create(string number)
     {
-        return type switch
+        var digits = Regex.Replace(number, @"\D", "");
+        return digits.Length switch
         {
-            EDocumentType.CPF => Cpf.Create(number),
-            EDocumentType.CNPJ => Cnpj.Create(number),
+            11 => Cpf.Create(number),
+            14 => Cnpj.Create(number),
             _ => null
         };
     }

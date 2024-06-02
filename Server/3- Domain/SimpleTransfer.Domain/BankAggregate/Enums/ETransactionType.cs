@@ -1,4 +1,4 @@
-namespace SimpleTransfer.Domain.BankTransactionsAggregate.Enums;
+namespace SimpleTransfer.Domain.BankAggregate.Enums;
 
 public enum ETransactionType
 {

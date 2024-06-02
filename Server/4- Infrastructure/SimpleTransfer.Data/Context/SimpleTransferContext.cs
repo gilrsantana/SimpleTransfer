@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Entities;
+using SimpleTransfer.Domain.BankAggregate.Entities;
 using SimpleTransfer.Domain.IdentityAggregate.Entities;
 
 namespace SimpleTransfer.Data.Context;

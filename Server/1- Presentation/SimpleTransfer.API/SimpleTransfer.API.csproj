@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\2- Application\SimpleTransfer.Application\SimpleTransfer.Application.csproj" />
     <ProjectReference Include="..\..\4- Infrastructure\SimpleTransfer.Data\SimpleTransfer.Data.csproj" />
     <ProjectReference Include="..\..\4- Infrastructure\SimpleTransfer.Persistence\SimpleTransfer.Persistence.csproj" />
   </ItemGroup>

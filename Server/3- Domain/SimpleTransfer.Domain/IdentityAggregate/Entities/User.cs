@@ -1,7 +1,7 @@
 using Flunt.Notifications;
 using Flunt.Validations;
 using Microsoft.AspNetCore.Identity;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Entities;
+using SimpleTransfer.Domain.BankAggregate.Entities;
 using SimpleTransfer.Domain.IdentityAggregate.ValueObjects.Factory;
 
 namespace SimpleTransfer.Domain.IdentityAggregate.Entities;
@@ -9,7 +9,7 @@ namespace SimpleTransfer.Domain.IdentityAggregate.Entities;
 public sealed class User : IdentityUser
 {
     public Document Document { get; private set; }
-    public string AccountBankId { get; private set; }
+    public string AccountBankId { get; private set; } = string.Empty;
     public AccountBank AccountBank { get; private set; }
     private IEnumerable<Notification> _notifications = new List<Notification>();
     public IEnumerable<Notification> Notifications
@@ -17,7 +17,7 @@ public sealed class User : IdentityUser
         get => _notifications;
         private set => _notifications = value.AsEnumerable();
     }
-    public bool IsValid => _notifications.Any();
+    public bool IsValid => !_notifications.Any();
 
     private User()
     {
@@ -43,18 +43,15 @@ public sealed class User : IdentityUser
         return user;
     }
     
-    public void Update(string name, Document document, string email)
+    public void Update(string name, string email)
     {
         var oldName = UserName;
-        var oldDocument = Document;
         var oldEmail = Email;
         UserName = name.Trim().ToUpper();
-        Document = document;
         Email = email.Trim().ToLower();
         Validate();
         if (IsValid) return;
         UserName = oldName;
-        Document = oldDocument;
         Email = oldEmail;
     }
     
@@ -86,13 +83,20 @@ public sealed class User : IdentityUser
         PasswordHash = passwordHasher.HashPassword(this, newPassword);
     }
     
+    public bool CheckPassword(string password)
+    {
+        var passwordHasher = new PasswordHasher<User>();
+        return passwordHasher.VerifyHashedPassword(this, PasswordHash, password) 
+               == PasswordVerificationResult.Success;
+    }
+    
     private void Validate()
     {
+        AddNotifications(Document.Notifications);
         var contract = new Contract<User>()
             .Requires()
             .IsEmail(Email, "Email", "E-mail inválido")
-            .IsNotNullOrEmpty(UserName, "Name", "Nome inválido")    
-            .IsTrue(Document.IsValid, "Document", "Invalid document");
+            .IsNotNullOrEmpty(UserName, "Name", "Nome inválido");
         AddNotifications(contract.Notifications);
     }
 

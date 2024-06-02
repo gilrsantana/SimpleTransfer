@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using SimpleTransfer.Common.Interfaces;
-using SimpleTransfer.Domain.BankTransactionsAggregate.Interfaces;
+using SimpleTransfer.Domain.BankAggregate.Interfaces;
 using SimpleTransfer.Domain.IdentityAggregate.Interfaces;
 using SimpleTransfer.Persistence.Common;
 using SimpleTransfer.Persistence.Domain;

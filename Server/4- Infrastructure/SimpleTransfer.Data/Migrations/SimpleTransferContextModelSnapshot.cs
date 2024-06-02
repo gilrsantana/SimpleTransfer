@@ -22,7 +22,7 @@ namespace SimpleTransfer.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", b =>
+            modelBuilder.Entity("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(36)
@@ -51,7 +51,7 @@ namespace SimpleTransfer.Data.Migrations
                     b.ToTable("UsersBank");
                 });
 
-            modelBuilder.Entity("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.Transaction", b =>
+            modelBuilder.Entity("SimpleTransfer.Domain.BankAggregate.Entities.Transaction", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(36)
@@ -164,26 +164,26 @@ namespace SimpleTransfer.Data.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", b =>
+            modelBuilder.Entity("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", b =>
                 {
                     b.HasOne("SimpleTransfer.Domain.IdentityAggregate.Entities.User", "User")
                         .WithOne("AccountBank")
-                        .HasForeignKey("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", "UserId")
+                        .HasForeignKey("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.Transaction", b =>
+            modelBuilder.Entity("SimpleTransfer.Domain.BankAggregate.Entities.Transaction", b =>
                 {
-                    b.HasOne("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", "Payee")
+                    b.HasOne("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", "Payee")
                         .WithMany("PayeeTransactions")
                         .HasForeignKey("PayeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", "Payer")
+                    b.HasOne("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", "Payer")
                         .WithMany("PayerTransactions")
                         .HasForeignKey("PayerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -228,7 +228,7 @@ namespace SimpleTransfer.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SimpleTransfer.Domain.BankTransactionsAggregate.Entities.AccountBank", b =>
+            modelBuilder.Entity("SimpleTransfer.Domain.BankAggregate.Entities.AccountBank", b =>
                 {
                     b.Navigation("PayeeTransactions");
 
